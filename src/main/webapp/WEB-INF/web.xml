@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+
+	<servlet>
+		<servlet-name>s1</servlet-name>
+		<servlet-class>com.zoho.model.CreateAccount</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>s1</servlet-name>
+		<url-pattern>/acc</url-pattern>
+
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s2</servlet-name>
+		<servlet-class>com.zoho.model.LoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>s2</servlet-name>
+		<url-pattern>/loginUser</url-pattern>
+
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>s3</servlet-name>
+		<servlet-class>com.zoho.servlets.GetAllMail</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s3</servlet-name>
+		<url-pattern>/showMail</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s4</servlet-name>
+		<servlet-class>com.zoho.servlets.GetAllPhno</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s4</servlet-name>
+		<url-pattern>/showPhno</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s5</servlet-name>
+		<servlet-class>com.zoho.servlets.MakePrime</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s5</servlet-name>
+		<url-pattern>/toprime</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s6</servlet-name>
+		<servlet-class>com.zoho.servlets.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s6</servlet-name>
+		<url-pattern>/Delete</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>s7</servlet-name>
+		<servlet-class>com.zoho.servlets.AddMailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>s7</servlet-name>
+		<url-pattern>/addMail</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>f1</filter-name>
+		<filter-class>com.zoho.model.logoutfilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>f1</filter-name>
+		<url-pattern>/log_out</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>f2</filter-name>
+		<filter-class>com.zoho.model.CheckFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>f2</filter-name>
+		<url-pattern>/home.jsp</url-pattern>
+	</filter-mapping>
+
+
+
+	<listener>
+		<listener-class>com.zoho.model.MyServletContextListener</listener-class>
+	</listener>
+
+</web-app>
