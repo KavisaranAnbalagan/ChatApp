@@ -27,7 +27,6 @@ public class logoutfilter extends HttpFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 		if (session.getAttribute("DataField")=="InvalidSession") {
-			System.out.println("page Redirect in logoutfilter page");
 			((HttpServletResponse) response).sendRedirect("Login.jsp");
 			return;
 		}
@@ -48,8 +47,6 @@ public class logoutfilter extends HttpFilter implements Filter {
 					session.removeAttribute("DataField");
 					session.setAttribute("DataField", "InvalidSession");
 				   // chain.doFilter(req, res);
-					
-				    System.out.println("tologin");
 					res.sendRedirect("Login.jsp");
 				}
 			}

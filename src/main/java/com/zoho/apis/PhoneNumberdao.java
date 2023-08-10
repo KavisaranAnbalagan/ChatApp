@@ -25,7 +25,6 @@ public class PhoneNumberdao {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println(phNo.getUserid());
 		return phNo.getUserid();
 	}
 

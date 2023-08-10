@@ -26,9 +26,6 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		UserPassworddao passwordDao=new UserPassworddao();
-
-		System.out.println("login servlet");
-
 		String loginId = request.getParameter("userid");
 		String password = request.getParameter("password");
 		boolean isValid = validateEmail(loginId);

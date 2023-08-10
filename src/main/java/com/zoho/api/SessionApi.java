@@ -13,7 +13,6 @@ public class SessionApi implements SessionInterfaceForCUD {
 		SessionContainerdao sessionObject = new SessionContainerdao();
 		SessionContainer sessionDetails = sessionObject.getSession(sessionId);
 		if (sessionDetails != null) {
-			System.out.println(sessionDetails.getHmp1());
 			try {
 				sessionRedis.storeSessionInRedis(sessionId, sessionDetails);
 			} catch (Exception e) {

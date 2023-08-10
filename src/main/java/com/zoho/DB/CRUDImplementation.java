@@ -120,7 +120,7 @@ public class CRUDImplementation {
 			AuditHistorydao auditHistorydao = new AuditHistorydao();
 			auditHistorydao.insertInToAudit(ob, null, "insert");
 			RedisDeletion redisDeletion = new RedisDeletion();
-			redisDeletion.deleteInRedis(ob, tableName, null,"insert");
+			redisDeletion.deleteInRedis(null, ob, tableName, null, "insert");
 		}
 	}
 
@@ -186,11 +186,8 @@ public class CRUDImplementation {
 				if (tableName != "AuditHistory") {
 					AuditHistorydao auditHistorydao = new AuditHistorydao();
 					auditHistorydao.insertInToAudit(of, null, "insert");
-
-				}
-				if (tableName != "AuditHistory") {
 					RedisDeletion redisDeletion = new RedisDeletion();
-					redisDeletion.deleteInRedis(of, tableName, null,"insert");
+					redisDeletion.deleteInRedis(null, of, tableName, null, "insert");
 				}
 			}
 			con.commit();
@@ -210,8 +207,11 @@ public class CRUDImplementation {
 		// to append column names and their values
 		int itr = 0;
 		ArrayList<String> column = new ArrayList<>(colAndval.keySet());
-		
-		
+		ArrayList<String> allColumns = new ArrayList<>();
+		allColumns.add("*");
+		StringBuilder forWhere = buildWhereQuery(where);
+
+		ObjectFactory oldValueForDeletion = db.selectOne(tablename, allColumns, where);
 		for (Map.Entry<String, String> entry : colAndval.entrySet()) {
 
 			itr++;
@@ -225,7 +225,7 @@ public class CRUDImplementation {
 			sb.append(str1);
 		}
 		ObjectFactory oldValue = db.selectOne(tablename, column, where);
-		StringBuilder forWhere = buildWhereQuery(where);
+		
 
 		System.out.println("forWhere=" + forWhere);
 		Connection con = DBCPImpl.getInstance().getconnection();
@@ -238,14 +238,12 @@ public class CRUDImplementation {
 		AuditHistorydao auditHistorydao = new AuditHistorydao();
 
 		auditHistorydao.insertInToAudit(newValue, oldValue, "update");
-		ArrayList<String> allColumns=new ArrayList<>();
-		allColumns.add("*");
-		where=null;
-		ObjectFactory deletion = db.selectOne(tablename, allColumns, where);
+
+		ObjectFactory currentValue = db.selectOne(tablename, allColumns, where);
 		con.close();
-		if (tablename != "AuditHistory" && tablename != "GetId" ) {
+		if (tablename != "AuditHistory" && tablename != "GetId") {
 			RedisDeletion redisDeletion = new RedisDeletion();
-			redisDeletion.deleteInRedis(deletion, tablename,column,"update");
+			redisDeletion.deleteInRedis(oldValueForDeletion, currentValue, tablename, column, "update");
 		}
 
 	}
@@ -268,7 +266,7 @@ public class CRUDImplementation {
 		con.close();
 		if (tablename != "AuditHistory") {
 			RedisDeletion redisDeletion = new RedisDeletion();
-			redisDeletion.deleteInRedis(ob, tablename, null,"delete");
+			redisDeletion.deleteInRedis(null, ob, tablename, null, "delete");
 		}
 	}
 

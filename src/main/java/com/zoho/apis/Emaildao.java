@@ -180,7 +180,6 @@ public class Emaildao implements EmailInterfaceForCUD {
 		where.put(hm, null);
 
 		ArrayList<ObjectFactory> obArrayLists = new ArrayList<>();
-		System.out.println(obArrayLists.size());
 		try {
 			obArrayLists = db.select(tableName, columnNames, where);
 		} catch (Exception e1) {
@@ -222,7 +221,6 @@ public class Emaildao implements EmailInterfaceForCUD {
 
 		Email e = null;
 		int len = OBArrayLists.size();
-		System.out.println("obsize:" + OBArrayLists.size());
 		for (int i = 0; i < len; i++) {
 			e = (Email) OBArrayLists.get(i);
 			mails.add(e.getMailid());

@@ -29,11 +29,8 @@ public class UserDetails extends ObjectFactory implements Serializable {
 	}
 
 	public UserDetails(HashMap<String, Object> map2) {
-		//System.out.println("1.5");
 		super("UserDetails", map2);
-		System.out.println("1.55");
 		hashmapMethod(map2);
-		System.out.println("1.75");
 	}
 
 	public UserDetails(String fname2, String lname2, LocalDate dob2, String gender2) {
@@ -143,7 +140,6 @@ public class UserDetails extends ObjectFactory implements Serializable {
 				ob=m.getValue();
 				int num=(int)ob;
 				spamCheck=num;
-				System.out.println("spamcheck="+num);
 			}
 		}
 	}

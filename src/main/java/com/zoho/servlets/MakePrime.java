@@ -21,7 +21,6 @@ public class MakePrime extends HttpServlet {
 		HttpSession session = ((HttpServletRequest) request).getSession(true);
 		int userid = (int) session.getAttribute("userid");
 		EmailInterfaceForCUD emailCUDProxy = ProxyObject.getEmailProxy();
-		System.out.println("makepriME"+userid);
 		emailCUDProxy.makeAsPrimary(mailId,userid);
 		DeleteMailDetailsFromRedis instance = new DeleteMailDetailsFromRedis();
 		instance.deletePrimaryInRedis(userid);

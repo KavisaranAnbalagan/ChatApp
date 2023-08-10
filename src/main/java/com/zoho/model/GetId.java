@@ -30,7 +30,6 @@ public class GetId extends ObjectFactory {
 			}
 			if (m.getKey().equals("id")) {
 				this.id = (int) m.getValue();
-				System.out.println(this.id);
 			}
 			if (m.getKey().equals("auditId")) {
 				this.auditId = (int) m.getValue();
